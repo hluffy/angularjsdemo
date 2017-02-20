@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>table</title>
+	</head>
+	<body>
+		<div ng-app="myApp" ng-controller="myCtrl">
+			<table>
+				<tr>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+				<tr ng-repeat="x in users">
+					<td>{{x.name}}</td>
+					<td>{{x.age}}</td>
+				</tr>
+			</table>
+		</div>
+		<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+		<script>
+			var app = angular.module("myApp",[]);
+			app.controller("myCtrl",function($scope,$http){
+				$http.get("json/users.json").success(function(data){
+					$scope.users = data.users;
+				});
+			});
+		</script>
+	</body>
+</html>
